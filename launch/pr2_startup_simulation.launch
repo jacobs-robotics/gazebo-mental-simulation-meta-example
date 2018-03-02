@@ -1,0 +1,87 @@
+<?xml version="1.0"?>
+<launch>
+    
+  <arg name="paused" default="true"/>
+  <arg name="debug" default="false" />
+  <arg name="gui" default="true"/>
+  <arg name="jiggle_fraction" default="0.2" />
+  <arg name="world_file" default="$(env HOME)/world_files/empty_super_realtime.world"/>
+
+  <!-- this loads the parameter needed by the mental simulation experiment script -->
+  <rosparam command="load" ns="/mental-simulation" file="$(find gazebo-mental-simulation-meta-example)/config/pr2.yaml"/>
+
+  <!-- load and spawn PR2 -->
+  <param name="robot_description" command="$(find xacro)/xacro.py '$(find pr2_description)/robots/pr2_no_kinect.urdf.xacro'" />
+  <node name="spawn_pr2_model" pkg="gazebo_ros" type="spawn_model" args="$(optenv ROBOT_INITIAL_POSE) -urdf -param robot_description -model pr2 -ros_namespace /gazebo" respawn="false" output="screen" />
+
+  <!-- start PR2 controllers and sensors -->
+  <include file="$(find pr2_controller_configuration_gazebo)/launch/pr2_default_controllers.launch" />
+  <!-- use customized version of $(find pr2_gazebo)/launch/pr2_bringup.launch to remove some unnecessary things (cameras etc.) -->
+  <include file="$(find gazebo-mental-simulation-meta-example)/launch/pr2_bringup.launch" />
+  
+  <param name="/move_group/trajectory_execution/execution_duration_monitoring" value="false"/> <!-- this is necessary because of the slow gripper controller -->
+  <include file="$(find pr2_moveit_config)/launch/move_group.launch">
+    <arg name="publish_monitored_planning_scene" value="true" />
+    <arg name="allow_trajectory_execution" value="true"/>
+    <arg name="fake_execution" value="false"/>
+    <arg name="info" value="true"/>
+    <arg name="debug" value="$(arg debug)"/>
+    <arg name="jiggle_fraction" value="$(arg jiggle_fraction)" />
+  </include>
+  
+  <!-- use stripped-down SRDF with additional gripper poses, but removed cameras -->
+  <param name="robot_description_semantic" textfile="$(find gazebo-mental-simulation-meta-example)/config/pr2.srdf" />
+
+  <!-- enables moving to pre-stored poses via their name -->
+  <node pkg="moveit_saved_pose" type="moveit_saved_pose" name="moveit_saved_pose" output="screen" />
+  
+  <!-- PR2 base move controller -->
+  <node pkg="nav_pcontroller" type="nav_pcontroller" name="nav_pcontroller" output="screen">
+    <remap from="/cmd_vel" to="/base_controller/command"/>
+    <remap from="~laser_1" to="/base_scan"/>
+    <remap from="/goal" to="/base_controller/move_base/goal"/>
+    <rosparam>
+      enable_jlo: false
+      
+      slowdown_far: 0.20
+      slowdown_near: 0.08
+      safety_dist: 0.06
+      repelling_dist: 0.10
+      repelling_gain: 0.5
+      repelling_gain_max: 0.015
+      
+      vel_ang_max: 0.6
+      vel_lin_max: 0.5
+      acc_ang_max: 0.4
+      acc_lin_max: 1.0
+      loop_rate: 30
+      p: 1.2
+      
+      n_lasers: 1
+      complete_blind_spots: false
+
+      odom_frame: /odom_combined
+      global_frame: /odom_combined
+      base_link_frame: /base_link
+
+      speed_filter_name: /nav_pcontroller
+      footprint:
+        front: 0.33
+        rear: -0.33
+        right: -0.33
+        left: 0.33
+        tolerance: 0.0
+    </rosparam>
+  </node>
+  
+  <!-- start Gazebo -->
+  <include file="$(find gazebo-mental-simulation-meta-example)/launch/empty_world.launch">
+    <arg name="paused" default="$(arg paused)"/>
+    <arg name="debug" value="$(arg debug)" />
+    <arg name="verbose" value="false" />
+    <arg name="gui" default="$(arg gui)"/>
+    <arg name="world_name" value="$(arg world_file)" />
+    <arg name="use_sim_time" value="true" />
+  </include>
+  
+</launch>
