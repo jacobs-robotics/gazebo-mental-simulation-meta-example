@@ -9,6 +9,7 @@
 - git: {local-name: moveit_commander, uri: 'https://github.com/ros-planning/moveit_commander.git', version: indigo-devel}
 - git: {local-name: moveit_resources, uri: 'https://github.com/ros-planning/moveit_resources.git', version: master}
 - git: {local-name: moveit_docs, uri: 'https://github.com/ros-planning/moveit_docs.git', version: indigo-devel}
+- git: {local-name: moveit_saved_pose, uri: 'https://github.com/jacobs-robotics/moveit_saved_pose.git', version: master}
 # this is the new all-in-one MoveIt repo which does not compile here, but should eventually replace all the other ones
 #- git: {local-name: moveit, uri: 'https://github.com/ros-planning/moveit.git', version: indigo-devel}
 
