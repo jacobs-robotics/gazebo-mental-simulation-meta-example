@@ -5,7 +5,7 @@
   <arg name="debug" default="false" />
   <arg name="gui" default="true"/>
   <arg name="jiggle_fraction" default="0.2" />
-  <arg name="world_file" default="$(env HOME)/world_files/empty_super_realtime.world"/>
+  <arg name="world_file" default="$(find gazebo-mental-simulation-meta-example)/default_worlds/empty_super_realtime.world"/>
 
   <!-- this loads the parameter needed by the mental simulation experiment script -->
   <rosparam command="load" ns="/mental-simulation" file="$(find gazebo-mental-simulation-meta-example)/config/pr2.yaml"/>

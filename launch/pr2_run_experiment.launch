@@ -3,7 +3,7 @@
 	
   <arg name="gui" default="true"/>
   <arg name="verbose" default="false"/>
-  <arg name="world_file" default="$(env HOME)/world_files/empty_super_realtime.world"/>
+  <arg name="world_file" default="$(find gazebo-mental-simulation-meta-example)/default_worlds/empty_super_realtime.world"/>
   <arg name="world_filename" default="empty_super_realtime.world"/>
 
   <!-- launch simulation -->
