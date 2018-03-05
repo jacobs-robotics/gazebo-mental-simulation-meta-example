@@ -1,0 +1,13 @@
+<package>
+  <name>gazebo-mental-simulation-meta-example</name>
+  <version>0.1.0</version>
+  <description>Example meta package for Gazebo mental simulation</description>
+  <maintainer email="t.fromm@jacobs-university.de">Tobias Fromm</maintainer>
+
+  <license>EuPL v1.2</license>
+
+  <author>Tobias Fromm</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>

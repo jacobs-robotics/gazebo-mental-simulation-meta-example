@@ -1,0 +1,45 @@
+namespace_prefix: "" 
+robot_name: "pr2"
+joint_name_world: "odom_combined"
+joint_name_base: "base_footprint"
+joint_name_planning: "r_wrist_roll_link"
+joint_name_grasping: "r_gripper_tool_frame"
+# the attach link essentially needs a collision geometry!
+joint_name_attach: "r_gripper_palm_link"
+move_group_name: "right_arm_and_torso"
+# PRMstar is not available for the selected move group and LBKPIECE does not work, so only RRTConnect makes sense here
+planner_name: "RRTConnect"
+planning_time: 2.0
+monitor_motion_execution: false
+use_velvet_joint: false
+grasping_offset_axis: "x"
+# PR2 tool frame has a 0.18 offset from the palm link, thus we need minimum 0.25 here
+grasping_offset_value: 0.10
+start_pose_group1: "left_arm"
+start_pose_name1: "tuck_left_arm"
+start_pose_group2: "right_arm"
+start_pose_name2: "hover"
+
+# the workspace outside of which objects shall be disregarded for manipulation
+# object to which the workspace offset pose is relative
+workspace_anchor_object: "shopping_rack"
+workspace_offset_x: 0.01
+workspace_offset_y: 0
+# shelf pose is determined at the bottom, but the workspace pose is centered, thus add respective part of the shelf height
+workspace_offset_z: 0.96
+workspace_size_x: 0.51
+workspace_size_y: 1.28
+workspace_size_z: 0.655
+
+# base movement
+use_base_movement: true
+base_world_joint_name: "world_joint"
+base_controller_topic: "/nav_pcontroller/move_base"
+base_initial_movement_pos_x: 0.7
+
+# models that should be left untouched when clearing the scene
+gazebo_static_model_names: ["ground_plane", "pr2", "camera", "shopping_rack", "shopping_area"] 
+# static models for which collision objects shall be published
+gazebo_static_collision_object_names: ["shopping_rack"]
+# links which are allowed collide with MoveIt collision objects, e.g. gripper
+allowed_object_collision_link_names: ["r_gripper_l_finger_tip_link", "r_gripper_r_finger_tip_link"]
