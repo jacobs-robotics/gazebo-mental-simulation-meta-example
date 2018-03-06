@@ -2,9 +2,7 @@
 <launch>
 	
   <arg name="gui" default="true"/>
-  <arg name="verbose" default="false"/>
   <arg name="world_file" default="$(find gazebo-mental-simulation-meta-example)/default_worlds/empty_super_realtime.world"/>
-  <arg name="world_filename" default="empty_super_realtime.world"/>
 
   <!-- launch simulation -->
   <include file="$(find gazebo-mental-simulation-meta-example)/launch/pr2_startup_simulation.launch" >
@@ -12,6 +10,7 @@
 	<arg name="world_file" value="$(arg world_file)"/>
   </include>
 
-  <!-- TODO launch experiment script -->
+  <!-- launch experiment script - to be updated by the user with their own experiments -->
+  <node pkg="gazebo-mental-simulation-meta-example" type="pr2_experiment_template.py" name="pr2_experiment_template" required="true" output="screen" />
 
 </launch>
