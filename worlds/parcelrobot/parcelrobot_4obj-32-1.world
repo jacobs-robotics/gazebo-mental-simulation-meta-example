@@ -1,0 +1,562 @@
+<?xml version ='1.0'?>
+<sdf version='1.6'>
+<world name='default'>
+  <light name='sun' type='directional'>
+    <cast_shadows>1</cast_shadows>
+    <pose frame=''>0 0 10 0 -0 0</pose>
+    <diffuse>0.8 0.8 0.8 1</diffuse>
+    <specular>0.1 0.1 0.1 1</specular>
+    <attenuation>
+      <range>1000</range>
+      <constant>0.9</constant>
+      <linear>0.01</linear>
+      <quadratic>0.001</quadratic>
+    </attenuation>
+    <direction>-0.5 0.5 -1</direction>
+  </light>
+  <model name='ground_plane'>
+    <static>1</static>
+    <link name='link'>
+      <collision name='collision'>
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>100 100</size>
+          </plane>
+        </geometry>
+        <surface>
+          <friction>
+            <ode>
+              <mu>100</mu>
+              <mu2>50</mu2>
+            </ode>
+            <torsional>
+              <ode/>
+            </torsional>
+          </friction>
+          <contact>
+            <ode/>
+          </contact>
+          <bounce/>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>
+      <visual name='visual'>
+        <cast_shadows>0</cast_shadows>
+        <geometry>
+          <plane>
+            <normal>0 0 1</normal>
+            <size>100 100</size>
+          </plane>
+        </geometry>
+        <material>
+          <script>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+            <name>Gazebo/Grey</name>
+          </script>
+        </material>
+      </visual>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+    </link>
+  </model>
+  <physics name='default_physics' default='0' type='ode'>
+    <real_time_update_rate>0</real_time_update_rate>
+    <max_step_size>0.001</max_step_size>
+    <real_time_factor>1</real_time_factor>
+  </physics>
+  <gravity>0 0 -9.8</gravity>
+  <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+  <atmosphere type='adiabatic'/>
+  <scene>
+    <ambient>0.4 0.4 0.4 1</ambient>
+    <background>0.7 0.7 0.7 1</background>
+    <shadows>1</shadows>
+  </scene>
+  <spherical_coordinates>
+    <surface_model>EARTH_WGS84</surface_model>
+    <latitude_deg>0</latitude_deg>
+    <longitude_deg>0</longitude_deg>
+    <elevation>0</elevation>
+    <heading_deg>0</heading_deg>
+  </spherical_coordinates>
+  <model name='container'>
+    <link name='container'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0.22439 0 1.64098 0 -0 0</pose>
+        <mass>205</mass>
+        <inertia>
+          <ixx>329.883</ixx>
+          <ixy>1.59439e-15</ixy>
+          <ixz>12.9249</ixz>
+          <iyy>229.817</iyy>
+          <iyz>1.16598e-14</iyz>
+          <izz>267.609</izz>
+        </inertia>
+      </inertial>
+      <collision name='container_back_collision'>
+        <pose frame=''>0.92 0 1.36 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.16 2.45 2.4</size>
+          </box>
+        </geometry>
+        <max_contacts>10</max_contacts>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <bounce/>
+          <friction>
+            <torsional>
+              <ode/>
+            </torsional>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='container_bottom_collision_1'>
+        <pose frame=''>0 0 0.08 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>2 2.45 0.16</size>
+          </box>
+        </geometry>
+        <max_contacts>10</max_contacts>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <bounce/>
+          <friction>
+            <torsional>
+              <ode/>
+            </torsional>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='container_left_collision_2'>
+        <pose frame=''>0 1.145 1.36 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>2 0.16 2.4</size>
+          </box>
+        </geometry>
+        <max_contacts>10</max_contacts>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <bounce/>
+          <friction>
+            <torsional>
+              <ode/>
+            </torsional>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='container_right_collision_3'>
+        <pose frame=''>0 -1.145 1.36 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>2 0.16 2.4</size>
+          </box>
+        </geometry>
+        <max_contacts>10</max_contacts>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <bounce/>
+          <friction>
+            <torsional>
+              <ode/>
+            </torsional>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <collision name='container_top_collision_4'>
+        <pose frame=''>0 0 2.64 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>2 2.45 0.16</size>
+          </box>
+        </geometry>
+        <max_contacts>10</max_contacts>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <bounce/>
+          <friction>
+            <torsional>
+              <ode/>
+            </torsional>
+            <ode/>
+          </friction>
+        </surface>
+      </collision>
+      <visual name='container_back_visual'>
+        <pose frame=''>0.92 0 1.36 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.16 2.45 2.4</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='container_bottom_visual_1'>
+        <pose frame=''>0 0 0.08 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>2 2.45 0.16</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='container_left_visual_2'>
+        <pose frame=''>0 1.145 1.36 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>2 0.16 2.4</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='container_right_visual_3'>
+        <pose frame=''>0 -1.145 1.36 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>2 0.16 2.4</size>
+          </box>
+        </geometry>
+      </visual>
+      <visual name='container_top_visual_4'>
+        <pose frame=''>0 0 2.64 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>2 2.45 0.16</size>
+          </box>
+        </geometry>
+      </visual>
+      <velocity_decay/>
+      <velocity_decay/>
+      <velocity_decay/>
+      <velocity_decay/>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+    </link>
+    <pose frame=''>3.1 0 0 0 -0 0</pose>
+  </model>
+  <state world_name='default'>
+    <sim_time>689 999000000</sim_time>
+    <real_time>904 287833637</real_time>
+    <wall_time>1479486229 234324127</wall_time>
+    <iterations>689999</iterations>
+    <model name='container'>
+      <pose frame=''>3.10043 0.000475 -0 0 0 -0.000164</pose>
+      <scale>1 1 1</scale>
+      <link name='container'>
+        <pose frame=''>3.10043 0.000475 -0 0 0 -0.000164</pose>
+        <velocity>-0 0 0 0 -0 0</velocity>
+        <acceleration>-1.7e-05 -5.8e-05 0.000123 3.5e-05 -1e-05 0</acceleration>
+        <wrench>-0.003444 -0.011941 0.025296 0 -0 0</wrench>
+      </link>
+    </model>
+    <model name='ground_plane'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <scale>1 1 1</scale>
+      <link name='link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <velocity>0 0 0 0 -0 0</velocity>
+        <acceleration>0 0 0 0 -0 0</acceleration>
+        <wrench>0 0 0 0 -0 0</wrench>
+      </link>
+    </model>
+    <model name='roblog-dhl-box-blue-simple-0-1392'>
+      <pose frame=''>3.12506 -0.178177 0.35491 -0.077498 -0.251691 -1.37961</pose>
+      <scale>1 1 1</scale>
+      <link name='link'>
+        <pose frame=''>3.12506 -0.178177 0.35491 -0.077498 -0.251691 -1.37961</pose>
+        <velocity>-0.055642 -0.293581 -0.238625 1.47454 -0.464607 0.235356</velocity>
+        <acceleration>0 0 -9.8 0.053801 -0.6901 -1.53277</acceleration>
+        <wrench>0 0 -2.45 0 -0 0</wrench>
+      </link>
+    </model>
+    <model name='roblog-dhl-box-blue-simple-1-1393'>
+      <pose frame=''>3.06134 0.165815 0.382749 -1.5e-05 -0.531894 -0.090294</pose>
+      <scale>1 1 1</scale>
+      <link name='link'>
+        <pose frame=''>3.06134 0.165815 0.382749 -1.5e-05 -0.531894 -0.090294</pose>
+        <velocity>0.196923 -0.017155 -0.073578 0.077387 0.883402 0.001134</velocity>
+        <acceleration>2.641 -2.73957 0.879251 0.07245 -0.518934 0.346822</acceleration>
+        <wrench>0.660251 -0.684893 0.219813 0 -0 0</wrench>
+      </link>
+    </model>
+    <model name='roblog-maisels-barrel-simple-3-1395'>
+      <pose frame=''>2.63838 0.09849 0.305697 -0.38295 -0.353691 -0.563367</pose>
+      <scale>1 1 1</scale>
+      <link name='link'>
+        <pose frame=''>2.63838 0.09849 0.305697 -0.38295 -0.353691 -0.563367</pose>
+        <velocity>0.005732 -0.038762 0.005688 0.26604 0.039338 1e-06</velocity>
+        <acceleration>0.245238 -1.6586 17.5715 1.96981 1.45682 3.14159</acceleration>
+        <wrench>0.132428 -0.895642 9.48861 0 -0 0</wrench>
+      </link>
+    </model>
+    <model name='roblog-vanish-detergent-simple-2-1394'>
+      <pose frame=''>2.66151 -0.114441 0.273458 -0.321546 -0.45805 -0.596956</pose>
+      <scale>1 1 1</scale>
+      <link name='link'>
+        <pose frame=''>2.66151 -0.114441 0.273458 -0.321546 -0.45805 -0.596956</pose>
+        <velocity>-0.008839 0.025956 0.00724 -0.228767 -0.077905 1e-06</velocity>
+        <acceleration>-0.387607 1.13817 17.619 -0.612317 0.276664 3.14154</acceleration>
+        <wrench>-0.031009 0.091053 1.40952 0 -0 0</wrench>
+      </link>
+    </model>
+    <light name='sun'>
+      <pose frame=''>0 0 10 0 -0 0</pose>
+    </light>
+  </state>
+  <model name='roblog-dhl-box-blue-simple-0-1392'>
+    <link name='link'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.25</mass>
+        <inertia>
+          <ixx>0.00218083</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00473308</iyy>
+          <iyz>0</iyz>
+          <izz>0.00321375</izz>
+        </inertia>
+      </inertial>
+      <collision name='link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.372 0.126 0.298</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+            <torsional>
+              <ode/>
+            </torsional>
+          </friction>
+          <bounce/>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>
+      <visual name='link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.372 0.126 0.298</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+    </link>
+    <pose frame=''>3.13079 -0.146959 0.318895 -0.151774 -0.387839 -1.38253</pose>
+  </model>
+  <model name='roblog-dhl-box-blue-simple-1-1393'>
+    <link name='link'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.25</mass>
+        <inertia>
+          <ixx>0.00218083</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00473308</iyy>
+          <iyz>0</iyz>
+          <izz>0.00321375</izz>
+        </inertia>
+      </inertial>
+      <collision name='link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.372 0.126 0.298</size>
+          </box>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+            <torsional>
+              <ode/>
+            </torsional>
+          </friction>
+          <bounce/>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>
+      <visual name='link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <box>
+            <size>0.372 0.126 0.298</size>
+          </box>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Blue</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay/>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+    </link>
+    <pose frame=''>3.0381 0.17074 0.309 -0.015432 -0.635167 -0.082393</pose>
+  </model>
+  <model name='roblog-vanish-detergent-simple-2-1394'>
+    <link name='link'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.08</mass>
+        <inertia>
+          <ixx>0.000324987</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.000324987</iyy>
+          <iyz>0</iyz>
+          <izz>0.00011664</izz>
+        </inertia>
+      </inertial>
+      <collision name='link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.2</length>
+            <radius>0.054</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+            <torsional>
+              <ode/>
+            </torsional>
+          </friction>
+          <bounce/>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>
+      <visual name='link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.2</length>
+            <radius>0.054</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/PurpleGlow</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0.005</linear>
+        <angular>0.005</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+    </link>
+    <pose frame=''>2.66205 -0.116037 0.26 -0.311645 -0.446171 -0.601281</pose>
+  </model>
+  <model name='roblog-maisels-barrel-simple-3-1395'>
+    <link name='link'>
+      <pose frame=''>0 0 0 0 -0 0</pose>
+      <inertial>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <mass>0.54</mass>
+        <inertia>
+          <ixx>0.00354312</ixx>
+          <ixy>0</ixy>
+          <ixz>0</ixz>
+          <iyy>0.00354312</iyy>
+          <iyz>0</iyz>
+          <izz>0.00181548</izz>
+        </inertia>
+      </inertial>
+      <collision name='link_collision'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.242</length>
+            <radius>0.082</radius>
+          </cylinder>
+        </geometry>
+        <surface>
+          <contact>
+            <ode/>
+          </contact>
+          <friction>
+            <ode/>
+            <torsional>
+              <ode/>
+            </torsional>
+          </friction>
+          <bounce/>
+        </surface>
+        <max_contacts>10</max_contacts>
+      </collision>
+      <visual name='link_visual'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <geometry>
+          <cylinder>
+            <length>0.242</length>
+            <radius>0.082</radius>
+          </cylinder>
+        </geometry>
+        <material>
+          <script>
+            <name>Gazebo/Orange</name>
+            <uri>file://media/materials/scripts/gazebo.material</uri>
+          </script>
+        </material>
+      </visual>
+      <gravity>1</gravity>
+      <velocity_decay>
+        <linear>0.005</linear>
+        <angular>0.005</angular>
+      </velocity_decay>
+      <self_collide>0</self_collide>
+      <kinematic>0</kinematic>
+    </link>
+    <pose frame=''>2.63795 0.101403 0.281 -0.399355 -0.366814 -0.557583</pose>
+  </model>
+</world>
+</sdf>
